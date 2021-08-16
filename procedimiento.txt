@@ -1,0 +1,2 @@
+1. Obtener los archivos de las secuencias genómicas
+2. Obtener el genoma core utilizando parsnp
