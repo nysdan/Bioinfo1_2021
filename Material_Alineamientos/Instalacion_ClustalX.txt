@@ -4,3 +4,7 @@ tar -xzf clustalw-2.1-linux-x86_64-libcppstatic.tar.gz
 cd clustalw-2.1-linux-x86_64-libcppstatic
 chmod +x clustalw2
 ./clustalw2
+
+
+cd ~/Programas
+wget http://www.ormbunkar.se/aliview/downloads/linux/linux-version-1.27/aliview.tgz
