@@ -1,0 +1,307 @@
+# Video 7: Importar y exportar tablas
+
+ 
+Hasta ahora hemos visto cómo crear matrices o data frames a partir de vectores en R.
+
+#
+
+<En pantalla>
+
+¿Cómo importamos datos externos a nuestro espacio de trabajo en R?
+
+#
+
+
+En este video vamos a ver cómo importar tablas a partir de archivos de texto de diferentes tipos.
+
+#
+
+
+La forma más sencilla de importar datos a R para generar un data frame es utilizando la función read.table sobre un archivo de texto, cuyas columnas estén delimitadas de alguna forma.
+
+
+
+Un ejemplo de este tipo de archivos de texto son los .csv, que obtienen su nombre por "comma separated values".
+
+#
+
+<En pantalla> 
+
+{Tabla de nombres y edades separados por comas}
+
+En este caso, la tabla está en un archivo de texto cuyas columnas se separan por comas. Vemos que en este caso, la primera línea {señalar}contiene el nombre de las columnas.
+
+
+#
+
+Otra alternativa es que las columnas estén separadas por tabulaciones:
+
+#
+
+
+<En pantalla>
+
+{Tabla de nombres y edades separados por tabulaciones}
+
+Aquí resulta imperceptible, pero los espacios que separan el nombre del apellido en la primera columna {señalar} es diferente al espacio que separa las columnas {señalar} , y R (y la computadora) puede distinguirlos.
+
+#
+
+En caso de ser necesario, podremos tener comillas que encierran a los datos de texto
+
+Pero también pueden ser necesarios, por ejemplo, si nuestra tabla tiene las columnas separadas por comas y existen comas dentro del cuerpo de las columnas, como en este caso
+
+
+{Tabla de nombres y edades separados por tabulaciones con texto entre comillas}
+
+
+#
+
+
+<En pantalla>
+
+{columnas separadas por comas y comas dentro del texto de una columna}
+
+#
+
+
+
+En este caso, cada nombre está escrito en el formato [apellido, nombre], y el separador de columnas utilizado también está presente dentro de la columna nombre:
+Esta coma separa columnas {señalar} y esta {señalar} separa los apellidos de los nombres dentro de una misma celda.
+
+#
+
+
+
+Para la computadora, ambas comas son lo mismo, las interpreta como separadores de columnas
+
+#
+
+
+
+
+
+En la primera fila, R encuentra dos columnas {señalar} y en las restantes encuentra 3 {señalar}. En estos casos lo mejor sería utilizar otro tipo de separador, por ejemplo tabulaciones, o entrecomillar los nombres, para evitar la generación de errores o la creación de tablas mal formateadas, que luego serán muy difíciles para arreglar.
+
+#
+
+
+
+Cualquiera sea el caso, debemos especificar estas variantes para que los datos se importen correctamente. Para esto, se especifican los argumentos sep, que indica cuál caracter o símbolo es el separador de columnas, si la tabla contiene encabezados, o si los datos de texto se encuentran entre comillas, entre otros.
+
+#
+
+
+
+En algunos casos, R puede "darse cuenta" y elegir estos parámetros automáticamente, pero es más seguro y eficiente si los proveemos nosotros
+
+#
+
+___
+<DEMO>
+
+
+En este caso, {señalar} se especificaron los parámetros sep como "\t", que indica tabulación, y header = T que indica que las columnas contienen encabezados.
+___
+
+Si omitimos argumentos podremos obtener errores o una importación erronea, sin ningún mensaje o warning, por esta razón siempre es mejor incorporarlos a nuestra función read.table.
+
+#
+
+
+
+
+Para verificar si la importación de datos fue correcta exploramos la estructura del data frame obtenido:
+
+#
+
+
+___
+<DEMO>
+ 
+Aquí vemos que la información importada es correcta, ya que se obtiene un data frame de 100 filas y 2 columnas, y los nombres de las columnas son nombres y edades.
+
+___
+
+
+#
+
+
+Alternativamente, podemos obtener esta información con otras funciones:
+
+
+#
+___
+<DEMO>
+
+Obtenemos los nombres de las columnas con colnames y las dimensiones del data frame con dim
+___
+
+
+#
+
+
+read.table no es la única función para importar tablas como data frames en R
+ 
+
+#
+
+
+Al igual que read.table, read.csv nos permite importar un archivo de texto como un objeto data frame en R, pero sus argumentos toman diferentes valores por defecto. Para ver cuales son los valores por defecto que toman los argumentos podemos ver el archivo de ayuda de la función.
+
+
+#
+
+
+___________
+<DEMO>
+
+
+Para acceder podemos escribir la función en el editor de scripts o en la consola, seguido de paréntesis. Si situamos el cursor del mouse en el espacio entre los paréntesis, y presionamos la tecla Tab, nos muestra una pequeña ayuda, que podemos expandir presionando la tecla F1. De esta manera el archivo de ayuda de la función se muestra en el cuadrante inferior izquierdo de RStudio, en la pestaña Help
+___________
+
+#
+
+
+_______
+<DEMO>
+
+En la sección Usage, nos muestra todos los argumentos de la función,y los valores que toman por defecto, en caso de no especificarlos.
+
+
+Si por ejemplo vemos read.table, nos muestra, entre otras cosas que
+-	si no especificamos el argumento header, el valor por defecto es FALSE
+-	el carácter separador por defecto es el espacio en blanco
+-	los decimales se indican con puntos
+-	el inicio de los comentarios se indica con un numeral
+ 
+#
+
+
+_______
+<DEMO>
+Veamos la sección Usage de read.csv:
+ 
+
+en este caso:
+-	el valor por defecto de header es TRUE, por lo cual, a menos que se especifique lo contrario, la primera fila de la tabla en el archivo de texto será tomada como encabezados. 
+-	También vemos que el separador por defecto es la coma
+-	a diferencia de read.table, en este caso no se define un carácter que indique el inicio de un comentario, por lo tanto los signos de numeral seran leidos como parte de los datos en la tabla
+
+_______
+
+#
+
+
+
+Ahora veremos como guardar un objeto del tipo data frame o matiz como un archivo de texto.
+#
+
+
+
+Primero, debemos decidir los argumentos que definirán el formato del archivo de salida, como por ejemplo:
+
+
+{información en pantalla}
+
+1.	x es el nombre del objeto que se quiere exportar
+2.	file contiene la ruta al archivo donde se exportará la tabla
+3.	sep es el separador de columnas que se incorporará
+4.	row.names seteado como TRUE indica que se guardarán los nombres de las filas
+5.	col.names = TRUE indica que se guardarán los nombres de columa
+6.	quote = T indica que todos los valores de texto de la tabla serán escritos entre comillas en el archivo de salida
+7.	dec especifica el separador de decimales.
+-	x indica el nombre del objeto a exportar
+-	file especifica el nombre y ruta del archivo de salida
+-	sep es el separador de columnas: podemos usar comas, punto y coma, espacio o tabulaciones, por ejemplo
+-	con row.names especificamos si exportaremos los nombres de filas
+-	con col.names especificamos si exportaremos los nombres de columnas
+-	con quote decimos si los elementos de texto se escriben entre comillas
+-	con dec especificamos el separador de decimales. R trabaja con puntos como separador decimal, así que puede sernos util cambiar a comas utilizando dec = ","
+
+#
+
+
+Vamos a verlo en R
+
+_______
+<DEMO>
+En este caso vamos a guardar la tabla Sitio1 como un archivo de texto llamado tabla1.tsv. Seteamos quote = FALSE para que los elementos de texto no se escriban entre comillas; definimos sep como tabulaciones, que los valores decimales se separan con comas, y que no se escriban los nombres de filas
+
+
+#
+
+
+
+Al ejecutar el comando write.table, R no genera ningun mensaje, sin embargo se crea el archivo de salida, de acuerdo a los argumentos especificados, con lo que, en este caso, por ejemplo, las columnas están separadas por tabulaciones, los decimales se especifican con comas, los elementos no están entre comillas
+
+
+<Reumen en pantalla>
+Resumen
+-	Importamos tablas desde archivos de texto
+o	read.table()
+o	read.csv()
+-	Importamos tablas desde archivos excel
+o	read_excel()
+-	Exportamos objetos de tipo matríz o data frame como archivos de texto:
+o	write.table
+
+Entonces, resumiendo lo que vimos en este video:
+
+importamos a R tablas guardadas como archivos de texto, utilizando las funciones read.table o read.csv, que tienen el mismo comportamiento, pero sus argumentos toman valores por defecto algo diferentes.
+Vimos también como importar tablas desde archivos de excel
+Y como exportar tablas en objetos como matrices y data frames a archivos de texto, especificando diferentes argumentos.
+
+
+
+Cabe destacar que estas funciones son útiles sólo para importar tablas en formato de texto. Si queremos importar tablas en formatos de excel utilizaremos otras funciones que no vienen instaladas por defecto en R, por lo cual debemos instalar algún paquete que incluya esta funcionalidad.
+
+
+Existen varios paquetes disponibles para estos, pero vamos a ver uno en particular llamado readxl.
+
+
+<DEMO>
+ 
+Como está en el repositorio del CRAN utilizamos install.packages para instalarlo y utilizamos library() para poder usar sus funciones en nuestra sesión de R
+ 
+La función que nos permite la importar un archivo de excel es read_excel, que tiene como argumentos, entre otros, a:
+
+
+-	path, que corresponde a la ruta al archivo excel que se quiere importar
+-	sheet, que especifica el nombre de la hoja a importar
+-	col_names =TRUE indica que considere la primera fila de la tabla como nombres de 
+columnas
+-	trim_ws = T que indica que en se eliminarán los espacios en blanco en las celdas, si los hubiera.
+
+
+Veamos otro ejemplo:
+
+
+<Tabla en excel en pantalla>
+
+
+Si sólo queremos importar una parte de una hoja, podemos especificar un rango de importación con el argumento range. En este caso, los datos que queremos importar comienzan en la celda B4 y terminan en la celda D59. 
+
+
+
+
+
+
+
+
+
+
+Entonces importamos esta hoja utilizando read_excel, con los mismos argumentos que especificamos en el ejemplo anterior, para ver como nos queda:
+<DEMO>
+Copiamos y pegamos la función anterior, pero camiamos el nombre del objeto y de la hoja a importar por Sitio2.
+Mostramos las primeras filas con head y vemos que se importan 4 columnas: Muestras del sitio, …2, …3 y …4. Además, las celdas que estaban vacías en excel se importaron como NA en R, que significa no asignado. 
+En conclusión, la tabla importada no es la esperada, ya que incluye celdas no deseadas. Para importar los datos correctamente, debemos obviar las primeras 3 filas y la primera columna del archivo excel original.
+<DEMO>
+Para esto agregaremos el argumento range con el rango que queremos importar, correspondiente a la primera celda, que es la B4, seguido de la última celda, D59 en este caso, separados por dos puntos y entre comillas
+Ahora sí, tenemos las dos tablas en los objetos Sitio1 y Sitio2, correspondientes a las 2 hojas del archivo excel. 
+<DEMO>
+Si observamos detenidamente estos objetos, veremos que no se trata de data frames convencionales, sino que son de clase tbl_df, o más comunmente tibble. Esta clase de objetos es similar a los data frames, pero tiene un comportamiento diferente. Es la estructura de datos central de un set de paquetes llamado tidyverse, que no ampliaremos por ahora.
+<DEMO>
+En caso de ser necesario, podemos transformar estos objetos a la clase data frame convencional utilizando la función as.data.frame(). Ahora vemos al aplicar str o class que el tipo de objeto pasó a ser data frame.
+Entonces, hasta ahora vimos cómo crear data frames en R a partir de archivos de texto separados por comas o tabulaciones, utilizando las funciones read_table o read_csv, modificando sus argumentos para ajustarlos al formato de la tabla original.
+También vimos una manera de importar una tabla en un archivo de excel con la función read_excel del paquete readxl, que instalamos desde el repositorio CRAN
