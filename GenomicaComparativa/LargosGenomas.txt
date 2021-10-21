@@ -1,0 +1,18 @@
+Nanoarchaeum equitans	0.490885	intracelular obligado
+Methanocaldococcus jannaschii	1.73993	libre
+Methanosarcina barkeri	4.56045	libre
+Prochlorococcus marinus	1.70206	libre
+Escherichia coli	5.14183	libre
+Bradyrhizobium japonicum	9.22421	libre
+Mycoplasma pneumoniae	0.817176	intracelular obligado
+Babesia microti	6.63	
+Leishmania major	32.8551	
+Symbiodinium minutum	609.476	intracelular obligado
+Ameba	670000	
+Physcomitrella patens	477.948	
+Arabidopsis thaliana	107.456	
+Helecho	250000	
+Drosophila melanogaster	148.504	
+Blattella germanica	2037.2	
+Homo sapiens	2996.42	
+Salamandra	120000	
