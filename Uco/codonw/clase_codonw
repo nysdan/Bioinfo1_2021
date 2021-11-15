@@ -1,0 +1,51 @@
+Corro el codonw con Mycoplasma_genitalium_M2288_uid39707 (archivo CP003773.ffn, que tiene los CDS) la opción coa in rscu, y con las opciones gc e hidropaticidad.
+1) escribo en la terminal
+codonw CP003773.ffn
+Digo que sí a todo lo que me pregunte (son los nombres de los archivos de salida).
+Cuando termina, me aparecen ítems numerados para elegir. 
+Primero escribo 3 (Change defaults) y enter. Siempre, si quiero dar "marcha atrás", es otro enter (o x y enter, pero es más fácil enter).
+
+Aparece otra pantalla, con muchas opciones. Marco 10 y enter, y en la nueva pantalla marco el número correspondiente a "COA in RSCU".
+Si me pregunta algo, acá, le digo que no. Veo que la opción que elegí quedó entre { } y vuelvo a la pantalla anterior (enter).
+En el 9 me ofrece cambiar hacer el RSCU para cada gen por hacerlo "global" (Concatenate or individual genes). Lo dejo para genes individuales.
+(En vez de hacer esto, podría haber ido directamente apretando 5, y eligiendo ahí COA in RSCU, pero quería que vieran las opciones que hay).
+Ahora elijo el 4, Codon Usage Indices. Ahí marco las opciones 5, 6 y 11. Fíjense qué son.
+Vuelvo atrás y marco la r (run). Dejo el enter apretado hasta que se terminen los warnings. Leo alguno de ellos (son todos medio parecidos).
+Vuelvo atrás, y pongo q (quit).
+ 
+
+veo el archivo .out
+tiene cuatro columnas, gen, gc3, gc, hidropaticidad. Los (-) son los hidrofílicos, y los (+) los hidrofóbicos.
+vep el archivo genes.coa
+tiene 5 columnas: gen, Axis1 al 4
+¿Qué hay en el archivo .blk? ¿Qué son los dos valores que hay al lado de cada codón?
+
+abro R
+
+library(seqinr)
+
+con read.table con la opción header=T creo los dataframes coa y genes a partir de estos dos archivos:
+coa<-read.table("genes.coa",header=T)
+genes<-read.table("CP003773.out",header=T)
+
+hago plots entre los distintos ejes.
+hago correlaciones de cada eje con gc y con hidropaticidad
+pruebo hacer otras correlaciones (con posición en el genoma, con largo del gen, con lo que se me ocurra).
+pos <- 1:506 # 506 es la cantidad de genes
+o podía definir como vector a pos: pos <- 1:506 y después para plotearlo usar GC<-unlist(gc), ya que gc es un data.frame, que si bien no es una lista, igual se transforma en vector con unlist.
+Visualizo el plot(pos,gc)  a ver qué da. Si veo alguna regularidad, pruebo ver si tiene que ver son el origen de la replicación.
+
+bacdf <- oriloc(gbk="CP003773.gbk")
+draw.oriloc(bacdf, main = "C-G skew",
+	xlab = "Map position in Kb",
+	ylab = "Cumulated combined skew in Kb", las = 1, las.right = 3,
+	ta.mtext = "", 
+	ta.col = "red", ta.lwd = 1,
+	cg.mtext = "Cumul. C-G skew", 
+	cg.col = "blue", cg.lwd = 2,
+	cds.mtext = "", 
+	cds.col = "violet", cds.lwd = 1,
+	sk.col = "gray", sk.lwd = 1,
+	add.grid = TRUE)
+
+
