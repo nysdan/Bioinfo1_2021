@@ -1,0 +1,3 @@
+Aclaraciones:
+- Ej. 3: En el documento de respuestas y códigos especificar la url que utilizaron para obtener los archivos bajados.
+- Ej. 3.a.iii: Elegir el replicón de mayor tamaño y calcular el GC global del mismo.

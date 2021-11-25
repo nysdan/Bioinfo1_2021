@@ -1,0 +1,64 @@
+Bacillus anthracis str. Sterne	
+Bordetella pertussis Tohama I
+
+Agrobacterium fabrum str. C58	
+Amycolatopsis mediterranei U32
+
+Bordetella bronchiseptica 253
+Chlamydia pneumoniae CWL029
+
+Buchnera aphidicola str. APS (Acyrthosiphon pisum)
+Chlamydia trachomatis D/UW-3/CX
+
+Mycoplasma pneumoniae M129
+Helicobacter pylori 26695
+
+Clostridium botulinum A str. Hall
+Lactobacillus acidophilus NCFM
+
+Rickettsia prowazekii str. Madrid E
+Streptococcus mitis B6
+
+Bifidobacterium longum NCC2705	
+Yersinia pestis CO92
+
+Pseudomonas aeruginosa PAO1
+Streptococcus sanguinis SK36
+
+Xanthomonas campestris pv. campestris str. ATCC 33913
+Escherichia coli str. K-12 substr. MG1655
+Bacillus anthracis str. Sterne	
+Bordetella pertussis Tohama I
+
+Agrobacterium fabrum str. C58	
+Amycolatopsis mediterranei U32
+
+Bordetella bronchiseptica 253
+Chlamydia pneumoniae CWL029
+
+Buchnera aphidicola str. APS (Acyrthosiphon pisum)
+Chlamydia trachomatis D/UW-3/CX
+
+Mycoplasma pneumoniae M129
+Helicobacter pylori 26695
+
+Clostridium botulinum A str. Hall
+Lactobacillus acidophilus NCFM
+
+Rickettsia prowazekii str. Madrid E
+Streptococcus mitis B6
+
+Bifidobacterium longum NCC2705	
+Yersinia pestis CO92
+
+Pseudomonas aeruginosa PAO1
+Streptococcus sanguinis SK36
+
+Xanthomonas campestris pv. campestris str. ATCC 33913
+Escherichia coli str. K-12 substr. MG1655
+
+Campylobacter jejuni subsp. jejuni NCTC 11168
+Streptococcus suis BM407
+
+Campylobacter gracilis ATCC 33236
+Mycobacterium marinum E11
